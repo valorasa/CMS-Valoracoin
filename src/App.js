@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import PageNotFound from "./shared/pages/404";
+import ImpactPage from "./pages/Impacts";
+import ImpactForm from "./pages/Impacts/form";
+import CreateUserPage from "./pages/Users/forms";
+import CreateCompensation from "./pages/Compensation/forms";
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<ImpactPage />} />
+          <Route path="new" element={<ImpactForm />} />
+          <Route path="edit/:id" element={<ImpactForm />} />
+        </Route>
+        <Route path="usuarios">
+          <Route index element={<CreateUserPage />} />
+        </Route>
+        <Route path="compensação">
+          <Route index element={<CreateCompensation />} />
+        </Route>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
