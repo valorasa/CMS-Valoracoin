@@ -11,7 +11,12 @@ const ImpactForm = () => {
   const [alert, setAlert] = useState();
   const [name, setName] = useState();
   const [imageUrl, setImageUrl] = useState();
-  const [questionPhrase, setQuestionPhrase] =useState();
+  const [questionPhrase, setQuestionPhrase] = useState();
+  const [resultPhrase, setResultPhrase] = useState();
+  const [tooltipPhrase, setTooltipPhrase] = useState();
+  const [goalPhrase, setGoalPhrase] = useState();
+  const [valoraCoins, setValoraCoins] = useState();
+  const [metric, setMetric] = useState();
 
   async function findImpact() {
     if (!!params.id) {
@@ -21,18 +26,30 @@ const ImpactForm = () => {
       setName(impact.name);
       setImageUrl(impact.imageUrl);
       setQuestionPhrase(impact.questionPhrase);
+      setResultPhrase(impact.resultPhrase);
+      setTooltipPhrase(impact.toltipPhrase);
+      setGoalPhrase(impact.goalPhrase);
+      setValoraCoins(impact.valoraCoins);
+      setMetric(impact.metric);
       setLoading(false);
     }
   }
 
   useEffect(() => {
     findImpact();
-  });
+  },[]);
 
   async function saveImpact() {
     setLoading(true);
     const requestBody = {
       name,
+      imageUrl,
+      questionPhrase,
+      resultPhrase,
+      tooltipPhrase,
+      goalPhrase,
+      valoraCoins,
+      metric,
     };
 
     try {
@@ -100,6 +117,51 @@ const ImpactForm = () => {
                 placeholder="Pergunta"
                 defaultValue={questionPhrase}
                 onChange={(event) => setQuestionPhrase(event.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+              <Form.Label>resultPhrase</Form.Label>
+              <Form.Control
+                placeholder="resultPhrase"
+                defaultValue={resultPhrase}
+                onChange={(event) => setResultPhrase(event.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+              <Form.Label>tooltipPhrase</Form.Label>
+              <Form.Control
+                placeholder="tooltipPhrase"
+                defaultValue={tooltipPhrase}
+                onChange={(event) => setTooltipPhrase(event.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+              <Form.Label>goalPhrase</Form.Label>
+              <Form.Control
+                placeholder="goalPhrase"
+                defaultValue={goalPhrase}
+                onChange={(event) => setGoalPhrase(event.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+              <Form.Label>valoraCoins</Form.Label>
+              <Form.Control
+                placeholder="valoraCoins"
+                defaultValue={valoraCoins}
+                onChange={(event) => setValoraCoins(parseFloat(event.target.value))}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 ">
+              <Form.Label>metric</Form.Label>
+              <Form.Control
+                placeholder="metric"
+                defaultValue={metric}
+                onChange={(event) => setMetric(event.target.value)}
                 required
               />
             </Form.Group>

@@ -9,7 +9,7 @@ const NavigationBar = () => {
           <Navbar.Brand>CMS Valoracoin</Navbar.Brand>
           <Nav className="me-auto">
             <NavLink
-              to="/impactos"
+              to="/"
               className="text-white mx-2 text-decoration-none"
             >
                Impactos

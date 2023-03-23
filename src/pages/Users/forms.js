@@ -8,13 +8,17 @@ const CreateUserPage = () => {
   const [email, setEmail] = useState("");
   const [document, setDocument] = useState("");
   const [loading, setLoading] = useState(false);
+  const [created, setCreated] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    const response = await axiosInstance.post("/users", { name, email, document });
+    const response = await axiosInstance.post("/users/create", { name, email, document });
     setLoading(false);
-    console.log(response.data);
+    if (response.status === 201) {
+      setCreated(true);
+      event.target.reset();
+    }
   };
 
   return (
@@ -22,6 +26,7 @@ const CreateUserPage = () => {
       <NavigationBar />
       <main className="container">
         <h1>Criar Usuário</h1>
+        {created && <p>Usuário criado com sucesso!</p>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="name">
             <Form.Label>Nome</Form.Label>
