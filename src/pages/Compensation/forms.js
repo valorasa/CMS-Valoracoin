@@ -36,7 +36,7 @@ const CreateCompensation = () => {
         const impact = impacts.find((i) => i.id === impactId);
         const requestBody = {
             email,
-            amount,
+            amount: parseFloat(amount),
             impactId,
             goalPhrase: impact.goalPhrase,
             referralCode

@@ -20,7 +20,7 @@ const CreateUserPage = () => {
       event.target.reset();
     }
   };
-
+console.log(process.env.BASE_URL)
   return (
     <>
       <NavigationBar />
